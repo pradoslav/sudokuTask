@@ -1,0 +1,32 @@
+<div class="wrapper">
+
+  <div class="difficulty-wrapper">
+    <button (click)="newGame('easy')">Easy</button>
+    <button (click)="newGame('medium')">Medium</button>
+    <button (click)="newGame('hard')">Hard</button>
+    <button (click)="newGame('random')">Random</button>
+  </div>
+
+  <div class="table-wrapper">
+      @for (row of seed; track row; let rowIndex = $index) {    
+        <div class="row"> 
+          @for (cell of row; track columnIndex; let columnIndex = $index) {   
+            @if( cell > 0){
+              <div class="cell">
+                {{cell}}
+              </div>
+            }
+            @if( cell === 0){
+              <input type="text" (input)="change($event, rowIndex, columnIndex)">
+            } 
+          }
+        </div>
+        }
+  </div>
+  <div class="footer-buttons">
+    <button (click)="validate()">Validate</button>
+    <button (click)="solve()">Solve</button>
+  </div>
+</div>
+
+<app-loading-indicator></app-loading-indicator>
